@@ -1,7 +1,0 @@
-{
-  "name": "waze-processor",
-  "version": "0.0.1",
-  "dependencies": {
-    "aws-sdk": "^2.177.0"
-  }
-}
