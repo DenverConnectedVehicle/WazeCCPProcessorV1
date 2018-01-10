@@ -1,2 +1,2 @@
 # WazeCCProcessorV1
-Waze data processor with AWS Lambda Functions
+Waze data processor for AWS and Azure
