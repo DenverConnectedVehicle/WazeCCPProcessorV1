@@ -3,4 +3,6 @@ Azure Waze data processor takes [Waze CCP](https://www.waze.com/ccp) data feed b
 
 ## Architecture
 
-Placed inside the [docs folder]. 
+Placed the pdf version inside the [docs folder](https://github.com/CityofDenver/WazeCCProcessorV1/blob/master/azure/docs/WazeCCPprocessorAzureV1.pdf). 
+
+XML version of the diagram is available inside the [docs folder](https://github.com/CityofDenver/WazeCCProcessorV1/blob/master/azure/docs/WazeCCPprocessorAzureV1.xml) folder which can be opened using the [draw.io](https://www.draw.io/) for future modifications. 
