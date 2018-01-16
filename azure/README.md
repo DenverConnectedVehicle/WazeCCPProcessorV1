@@ -7,7 +7,7 @@ Placed the pdf version inside the [docs folder](https://github.com/CityofDenver/
 
 XML version of the diagram is available inside the [docs folder](https://github.com/CityofDenver/WazeCCProcessorV1/blob/master/azure/docs/WazeCCPprocessorAzureV1.xml) folder which can be opened using the [draw.io](https://www.draw.io/) for future modifications. 
 
-# Logic Apps creating using Azure portal for waze data polling 
+# Logic Apps creation using Azure portal 
 1. Login to the Azure portal and click on "New"
 2. Search and select Logic App from the results 
 
@@ -20,3 +20,14 @@ XML version of the diagram is available inside the [docs folder](https://github.
 ![alt text](screenshots/LogicAppcreation.png "Logic App creation required details")
 
 5. The details will be validated and the Logic App will be deployed to the group mentioned. 
+
+# Logic Apps workflow design using Azure portal to pool and store the waze data
+1. After the successful completion of the above 5 steps, select a blank template
+
+2. In the logic app designer, create the flow to ingest the waze data using the waze http endpoint URL for specified interval
+
+![alt text](screenshots/logicappdesigner-http.png "Logic App workflow design to pool waze data using HTTP")
+
+3. From the http workflow, add a parallel branch to add two actions - blob storage to store the raw data and a queue to add an entry about the new records in the blob storage. 
+
+![alt text](screenshots/LogicAppDesignblobqueue.png "Logic App workflow design to store data in blob and an queue to add an entry")
