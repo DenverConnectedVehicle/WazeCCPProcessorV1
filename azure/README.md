@@ -14,5 +14,9 @@ XML version of the diagram is available inside the [docs folder](https://github.
 ![alt text](screenshots/LogicAppNew.png "Logic App New")
 
 3. In the Terms and conditions page, click create
+
 4. Fill the required details and click create 
+
+![alt text](screenshots/LogicAppcreation.png "Logic App creation required details")
+
 5. The details will be validated and the Logic App will be deployed to the group mentioned. 
