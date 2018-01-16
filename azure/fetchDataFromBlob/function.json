@@ -12,5 +12,8 @@
       "name": "res"
     }
   ],
+  "dependencies": {
+    "azure-storage": "latest"
+  },
   "disabled": false
 }

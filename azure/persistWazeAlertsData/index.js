@@ -4,15 +4,12 @@ module.exports = function (context, req) {
     var dataTable = process.env["WazeDataTable"];
     var tableKey = process.env["WazeTableKey"];
     var alertsTable = process.env["WazeAlertsTable"];
-    var jsonDataStr = req.body;
-    var jsonData = JSON.parse(jsonDataStr);
     context.log('JavaScript HTTP trigger function processed a request.');
     var alertData = [];
-    
     var tableService = azure.createTableService(dataTable,tableKey);
     var entGen = azure.TableUtilities.entityGenerator;
-    var alerts = jsonData.alerts;
-    
+    var alerts = req.body.alerts;
+
     for (i = 0; i < alerts.length; i++) {
         var alert = alerts[i];
         var currentTimeStamp = new Date();
@@ -36,17 +33,22 @@ module.exports = function (context, req) {
             reportDescription: alert.reportDescription,
             dueDate: entGen.DateTime(new Date())
         };
+         
         tableService.insertEntity(alertsTable,task, function (error, result, response) {
             if(!error){
                 context.log('inserted');
-                alertData.push(task);
-            } 
+                alertData.push(alert);
+            } else {
+                context.log('record exists');
+            }
         });
 }
     setTimeout(function(){
+        context.log(alertData.length);
+
             context.res = {
                     body: alertData
             };
             context.done();
-    }, 3000);
+    }, 5000);
 };
