@@ -1,0 +1,8 @@
+{
+  "name": "store-waze-alerts",
+  "version": "0.0.1",
+  "dependencies": {
+    "aws-sdk": "^2.185.0",
+    "mysql": "^2.15.0"
+  }
+}
