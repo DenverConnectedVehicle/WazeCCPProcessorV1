@@ -1,0 +1,7 @@
+{
+  "name": "waze-sqs-publisher",
+  "version": "0.0.1",
+  "dependencies": {
+    "aws-sdk": "^2.183.0"
+  }
+}
