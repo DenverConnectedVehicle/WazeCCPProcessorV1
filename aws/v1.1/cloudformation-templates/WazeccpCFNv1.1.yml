@@ -1,0 +1,140 @@
+AWSTemplateFormatVersion: 2010-09-09
+Metadata:
+  'AWS::CloudFormation::Designer':
+    9d761b66-ed31-400d-86c4-eb71c678a862:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -210
+        'y': 50
+      z: 0
+      embeds: []
+    87efe138-14c1-4bcb-b17a-1d220ef5cf04:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -210
+        'y': 130
+      z: 0
+      embeds: []
+Parameters:
+  S3DeploymentsBucket:
+    Description: Enter s3 bucket name that has source codes for deployements 
+    Type: String
+  MySQLHost:
+    Description: Enter mySQL hostname has waze tables
+    Type: String
+  MySQLUserName:
+    Description: Enter mySQL username has waze tables
+    Type: String
+  MySQLPassword:
+    Description: Enter mySQL password has waze tables
+    Type: String
+  MySQLDatabase:
+    Description: Enter mySQL database has waze tables
+    Type: String
+  AlertsQueue:
+    Description: Enter SQS Queue Name for Alerts
+    Type: String
+  JamsQueue:
+    Description: Enter SQS Queue Name for Jams
+    Type: String     
+Resources:
+  WazeLambdaRole: 
+    Type: "AWS::IAM::Role"
+    Properties: 
+      AssumeRolePolicyDocument: 
+        Version: "2012-10-17"
+        Statement: 
+          - 
+            Effect: "Allow"
+            Principal: 
+              Service: 
+                - "lambda.amazonaws.com"
+            Action: 
+              - "sts:AssumeRole"
+  RolePolicies: 
+    Type: "AWS::IAM::Policy"
+    Properties: 
+      PolicyName: "WazeAdminPolicy"
+      PolicyDocument: 
+        Version: "2012-10-17"
+        Statement: 
+          - 
+            Effect: "Allow"
+            Action: "*"
+            Resource: "*"
+      Roles: 
+        - 
+          Ref: "WazeLambdaRole"
+  WazeProcessor:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      Code:
+        S3Bucket: !Ref S3DeploymentsBucket
+        S3Key: >-
+          WazeProcessor.zip
+      FunctionName: WazeProcessor
+      Handler: index.handler
+      MemorySize: 2048
+      Role: !GetAtt 
+        - WazeLambdaRole
+        - Arn
+      Runtime: nodejs6.10
+      Timeout: 120
+      Environment:
+        Variables:
+          ALERTSQUEUE: !Ref AlertsQueue
+          JAMSQUEUE: !Ref JamsQueue
+    DependsOn:
+      - WazeLambdaRole          
+  StoreWazeAlerts:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      Code:
+        S3Bucket: !Ref S3DeploymentsBucket
+        S3Key: >-
+          StoreWazeAlerts.zip
+      FunctionName: StoreWazeAlerts
+      Handler: index.wazehandler
+      MemorySize: 2048
+      Role: !GetAtt 
+        - WazeLambdaRole
+        - Arn
+      Runtime: nodejs6.10
+      Timeout: 120
+      Environment:
+        Variables:
+          HOST: !Ref MySQLHost
+          USERNAME: !Ref MySQLUserName
+          PASSWORD: !Ref MySQLPassword
+          DATABASE: !Ref MySQLDatabase
+          ALERTSQUEUE: !Ref AlertsQueue
+    DependsOn:
+      - WazeLambdaRole  
+  StoreWazeJams:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      Code:
+        S3Bucket: !Ref S3DeploymentsBucket
+        S3Key: >-
+          StoreWazeJams.zip
+      FunctionName: StoreWazeJams
+      Handler: index.wazehandler
+      MemorySize: 2048
+      Role: !GetAtt 
+        - WazeLambdaRole
+        - Arn
+      Runtime: nodejs6.10
+      Timeout: 120
+      Environment:
+        Variables:
+          HOST: !Ref MySQLHost
+          USERNAME: !Ref MySQLUserName
+          PASSWORD: !Ref MySQLPassword
+          DATABASE: !Ref MySQLDatabase
+          TRAFFICJAMSQUEUE: !Ref JamsQueue
+    DependsOn:
+      - WazeLambdaRole 
