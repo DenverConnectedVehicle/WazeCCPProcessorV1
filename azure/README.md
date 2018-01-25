@@ -22,10 +22,11 @@ Click on site folder
 
 Navigate to wwwroot folder ![alt text](screenshots/functionroot.png "wwwroot")
 
+Drag and drop the [functions](https://github.com/CityofDenver/WazeCCProcessorV1/blob/master/azure/code/functions/)
 ![alt text](screenshots/functionsloading.png "Drag and Drop the functions") 
-[functions](https://github.com/CityofDenver/WazeCCProcessorV1/blob/master/azure/code/functions/)
 
-![alt text](screenshots/npminstall.png "npm install to install the node dependencies for the functions")
+npm install to install the node dependencies for the functions
+![alt text](screenshots/npminstall.png "npm install")
 
 
 ## Step 2 - After successful completion of Step 2
