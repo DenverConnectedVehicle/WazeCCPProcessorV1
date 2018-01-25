@@ -13,8 +13,10 @@ XML version of the diagram is available inside the [docs folder](https://github.
 [![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fgithub.com%2FCityofDenver%2FWazeCCPProcessorV1%2Fblob%2Fmaster%2Fazure%2Ftemplatedeployment%2Fazuretemplate1.json)
 
 ## Step 2 - After successful completion of step 1
-Load the root folder to Azure Functions following the below steps.
 
+Navigate to the debug console associated with the function https://<functionName>.scm.azurewebsites.net/DebugConsole 
+
+Drag and drop all the [functions](https://github.com/CityofDenver/WazeCCProcessorV1/blob/master/azure/code/functions/)
 
 ## Step 2 - After successful completion of Step 2
 [![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fgithub.com%2FCityofDenver%2FWazeCCPProcessorV1%2Fblob%2Fmaster%2Fazure%2Ftemplatedeployment%2Fazuretemplate2.json)
