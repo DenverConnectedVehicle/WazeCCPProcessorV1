@@ -7,9 +7,17 @@ Placed the pdf version inside the [docs folder](https://github.com/CityofDenver/
 
 XML version of the diagram is available inside the [docs folder](https://github.com/CityofDenver/WazeCCProcessorV1/blob/master/azure/docs/WazeCCPprocessorAzureV1.xml) folder which can be opened using the [draw.io](https://www.draw.io/) for future modifications. 
 
-# Logic Apps creation using Azure Templates
-[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https://github.com/CityofDenver/WazeCCPProcessorV1/blob/master/azure/templatedeployment/azuretemplate1.json)
+# Logic Apps creation using Azure Templates - 3 steps process
 
+## Step 1
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fgithub.com%2FCityofDenver%2FWazeCCPProcessorV1%2Fblob%2Fmaster%2Fazure%2Ftemplatedeployment%2Fazuretemplate1.json)
+
+## Step 2 - After successful completion of step 1
+Load the root folder to Azure Functions following the below steps.
+
+
+## Step 2 - After successful completion of Step 2
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fgithub.com%2FCityofDenver%2FWazeCCPProcessorV1%2Fblob%2Fmaster%2Fazure%2Ftemplatedeployment%2Fazuretemplate2.json)
 
 
 # Logic Apps creation using Azure portal 
